@@ -3,7 +3,7 @@
 set -x
 
 #Stop any openscads that are running
-ps -ef | grep openscad | grep output | awk '{print $2}' | xargs -r kill
+ps -ef | grep -i openscad | grep output | awk '{print $2}' | xargs -r kill
 
 #names.txt should have a name in each line
 readarray -t NAMEARRAY < names.txt
@@ -26,6 +26,5 @@ while [ $i -lt ${#NAMEARRAY[*]}  ]; do
         j=$(($j + 1))
     done
     wait
-    i=$(($i + 4))
-    i=1000
+    i=$(($i + $cores))
 done
